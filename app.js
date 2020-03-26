@@ -12,27 +12,32 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-      promptFor("Would you like to search for one or multiple traits up to 5?");
-      switch(searchType){
-      case 'one':
-       searchResults = searchByTrait(people);
+       // TODO: search by traits
+       searchResults = chooseTraitSearch(people);
+    
        break;
-       case 'multiple':
-         searchResults = searchByTraits(people);
-         break;
-      }
-    
-      // TODO: search by traits
-    
-      break;
-      default:
-    
-    app(people); // restart app
-      break;
+       default:
+     
+     app(people); // restart app
+       break;
   }
+  
   
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
   mainMenu(searchResults, people);
+}
+
+function chooseTraitSearch(people){
+let searchType = promptFor("Would you like to search for one or multiple traits up to 5? Enter 'one or 'multiple'", chars);
+let searchResults;
+switch(searchType){
+case 'one':
+ searchResults = searchByTrait(people);
+ break;
+ case 'multiple':
+   searchResults = searchByTraits(people);
+   break;
+  }
 }
 
 // Menu function to call once you find who you are looking for
