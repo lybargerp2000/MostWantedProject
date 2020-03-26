@@ -12,6 +12,7 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
+      searchResults = chooseTraitsSearch(people);
       // TODO: search by traits
       break;
       default:
@@ -19,8 +20,47 @@ function app(people){
       break;
   }
   
+  
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
   mainMenu(searchResults, people);
+}
+
+function chooseTraitsSearch(people){
+let searchType = promptFor("Would you like to search for one or multiple traits up to 5? Enter 'one' or 'multiple'", chars);
+let searchResults;
+switch(searchType){
+case 'one':
+ searchResults = ChooseWhichTraitsearch(people);
+ break;
+ case 'multiple':
+   searchResults = searchByTraits(people);
+   break;
+  }
+}
+function ChooseWhichTraitsearch(people){
+  let searchType = promptFor("Would you like to seacrh for 'gender' 'dob' 'height' 'weight' 'eye color', or 'occupation'?", chars);
+  let searchResults;
+  switch(searchType){
+    case 'gender':
+      searchResults = searchByGender(people);
+      break;
+      case 'dob':
+        searchResults = searchByDob(people);
+        break;
+        case 'height':
+          searchResults = searchByHeight(people);
+          break;
+          case 'weight':
+            searchResults = searchByWeight(people);
+            break;
+            case 'eye color':
+              searchResults = searchByEyeColor(people);
+              break;
+              case 'occupation':
+                searchResults = searchByOccupation(people);
+                break;
+  }
+
 }
 
 // Menu function to call once you find who you are looking for
@@ -71,7 +111,84 @@ function searchByName(people){
   // TODO: find the person using the name they entered
   return foundPerson;
 }
+function searchByGender(people){
+  let gender = promptFor("Please enter a 'male' or 'female'", chars);
 
+  let foundPerson = people.filter(function(person){
+   if(person.gender === gender){
+     return true;
+   }
+   else{
+     return false;
+   }
+  })
+  return foundPerson;
+}
+function searchByDob(people){
+  let dob = promptFor("Please enter 'dob' in this format with numbers: mm/dd/yyyy", chars);
+
+  let foundPerson = people.filter(function(person){
+   if(person.dob === dob){
+     return true;
+   }
+   else{
+     return false;
+   }
+  })
+  return foundPerson;
+}
+function searchByHeight(people){
+  let height = promptFor("Please enter 'height' in this format with numbers in inches: nn", chars);
+
+  let foundPerson = people.filter(function(person){
+   if(person.height === height){
+     return true;
+   }
+   else{
+     return false;
+   }
+  })
+  return foundPerson;
+}
+function searchByWeight(people){
+  let weight = promptFor("Please enter 'weight' in this format: nnn with numbers in pounds", chars);
+
+  let foundPerson = people.filter(function(person){
+   if(person.weight === weight){
+     return true;
+   }
+   else{
+     return false;
+   }
+  })
+  return foundPerson;
+}
+function searchByEyeColor(people){
+  let eyeColor = promptFor("Please enter 'eye color'", chars);
+
+  let foundPerson = people.filter(function(person){
+   if(person.eyeColor === eyeColor){
+     return true;
+   }
+   else{
+     return false;
+   }
+  })
+  return foundPerson;
+}
+function searchByOccupation(people){
+  let occupation = promptFor("Please enter 'occupation'", chars);
+
+  let foundPerson = people.filter(function(person){
+   if(person.occupation === occupation){
+     return true;
+   }
+   else{
+     return false;
+   }
+  })
+  return foundPerson;
+}
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
