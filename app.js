@@ -38,7 +38,7 @@ function mainMenu(person, people){
   switch(displayOption){
     case "info":
     // TODO: get person's info
-    consol.log(displayPerson(person));
+    console.log(displayPerson(searchResults));
     break;
     case "family":
     // TODO: get person's family
@@ -82,7 +82,9 @@ function displayPeople(people){
 function displayPerson(person){
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
-  let personInfo = "Name: " + person.firstName + personInfo + "Last Name: " + person.lastName + "\n";
+  let personInfo = "First Name: " + person.firstName + "\n";
+  personInfo += "Last Name: " + person.lastName + "\n";
+  personInfo += "Name: " + person.firstName + " " + person.lastName + "\n";
   personInfo += "Height: " + person.height + "\n";
   personInfo += "Weight: " + person.weight + "\n";
   personInfo += "Age: " + person.age + "\n";
