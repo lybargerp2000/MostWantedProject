@@ -12,10 +12,21 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
+      promptFor("Would you like to search for one or multiple traits up to 5?");
+      switch(searchType){
+      case 'one':
+       searchResults = searchByTrait(people);
+       break;
+       case 'multiple':
+         searchResults = searchByTraits(people);
+         break;
+      }
+    
       // TODO: search by traits
-      searchResults = searchByTraits(traits)
+    
       break;
       default:
+    
     app(people); // restart app
       break;
   }
@@ -70,6 +81,38 @@ function searchByName(people){
   })
   // TODO: find the person using the name they entered
   return foundPerson;
+}
+function searchByMultipleTraits(people){
+
+
+}
+
+function searchByTrait(people){
+  let gender = promptFor("Please enter a trait of gender, dob, height, weight, or eye color", chars);
+
+  let foundPerson = people.filter(function(person){
+    if(person.gender === gender){
+      return true;
+    }
+    else if (person.dob === dob){
+      return true;
+    }
+    else if (person.height === height){
+      return true;
+    }
+    else if(person.weight === weight){
+      return true;
+    }
+    else if(person.eyeColor === eyeColor){
+      return true;
+    }
+    else{
+      return false;
+    }
+    
+  })
+  return foundPerson;
+
 }
 
 // alerts a list of people
