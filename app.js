@@ -67,6 +67,7 @@ function ChooseWhichTraitsearch(people){
 function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
+  
 
   if(!person){
     alert("Could not find that individual.");
@@ -78,7 +79,7 @@ function mainMenu(person, people){
   switch(displayOption){
     case "info":
     // TODO: get person's info
-    console.log(displayPerson(searchResults));
+    console.log(displayPerson(person));
     break;
     case "family":
     // TODO: get person's family
@@ -109,7 +110,7 @@ function searchByName(people){
     }
   })
   // TODO: find the person using the name they entered
-  return foundPerson;
+  return foundPerson[0];
 }
 function searchByGender(people){
   let gender = promptFor("Please enter a 'male' or 'female'", chars);
