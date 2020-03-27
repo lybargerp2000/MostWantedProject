@@ -36,6 +36,7 @@ case 'one':
    searchResults = searchByTraits(people);
    break;
   }
+
 }
 function ChooseWhichTraitsearch(people){
   let searchType = promptFor("Would you like to seacrh for 'gender' 'dob' 'height' 'weight' 'eye color', or 'occupation'?", chars);
@@ -61,13 +62,14 @@ function ChooseWhichTraitsearch(people){
                 break;
   }
 
+
 }
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
-
-  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
   let foundPerson = person.map(function(person){
+  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
+
   
 
   
