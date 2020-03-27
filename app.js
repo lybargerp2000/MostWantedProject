@@ -111,6 +111,24 @@ function searchByName(people){
   // TODO: find the person using the name they entered
   return foundPerson;
 }
+function searchByTraits(people){
+  let gender = promptFor("Enter the infomration for the following prompts, if unknown or not needed enter 'unknown' and press enter to proceed. What is the person's 'gender'? enter 'male' or female'", chars);
+  let height = promptFor("What is the person's 'height'? enter inches",chars);
+  let weight = promptFor("What is the person's 'weight'? enter pounds", chars);
+  let dob = promptFor("What is the person's 'dob'? enter fomral mm/dd/yyyy all in numbers",chars);
+  let eyeColor = promptFor("What is the person's 'eye color'? enter single word",chars);
+  let occupation = promptFor("What is the person's 'occupation'?",chars);
+  let foundPerson = people.filter(function(person){
+   if(person.gender === gender || person.height === height || person.weight === weight || person.dob === dob || person.eyeColor === eyeColor || person.occupation === occupation){
+     return true;
+   }
+   else{
+     return false;
+   }
+  })
+  return foundPerson;
+}
+
 function searchByGender(people){
   let gender = promptFor("Please enter a 'male' or 'female'", chars);
 
