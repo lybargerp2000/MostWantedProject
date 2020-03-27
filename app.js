@@ -67,7 +67,10 @@ function ChooseWhichTraitsearch(people){
 function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
+  let foundPerson = person.map(function(person){
+  
 
+  
   if(!person){
     alert("Could not find that individual.");
     return app(people); // restart
@@ -78,6 +81,7 @@ function mainMenu(person, people){
   switch(displayOption){
     case "info":
     // TODO: get person's info
+    displayPerson(person);
     console.log(displayPerson(searchResults));
     break;
     case "family":
@@ -94,6 +98,7 @@ function mainMenu(person, people){
     default:
     return mainMenu(person, people); // ask again
   }
+ })
 }
 
 function searchByName(people){
