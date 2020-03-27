@@ -83,8 +83,8 @@ function mainMenu(person, people){
   switch(displayOption){
     case "info":
     // TODO: get person's info
-    displayPerson(person);
-    console.log(displayPerson(searchResults));
+    console.log(displayPerson(person));
+
     break;
     case "family":
     // TODO: get person's family
@@ -116,7 +116,7 @@ function searchByName(people){
     }
   })
   // TODO: find the person using the name they entered
-  return foundPerson;
+  return foundPerson[0];
 }
 function searchByTraits(people){
   let gender = promptFor("Enter the infomration for the following prompts, if unknown or not needed enter 'unknown' and press enter to proceed. What is the person's 'gender'? enter 'male' or female'", chars);
