@@ -69,6 +69,7 @@ function mainMenu(person, people){
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
   
 
+  
   if(!person){
     alert("Could not find that individual.");
     return app(people); // restart
@@ -80,6 +81,7 @@ function mainMenu(person, people){
     case "info":
     // TODO: get person's info
     console.log(displayPerson(person));
+
     break;
     case "family":
     // TODO: get person's family
@@ -95,6 +97,7 @@ function mainMenu(person, people){
     default:
     return mainMenu(person, people); // ask again
   }
+ })
 }
 
 function searchByName(people){
@@ -112,6 +115,24 @@ function searchByName(people){
   // TODO: find the person using the name they entered
   return foundPerson[0];
 }
+function searchByTraits(people){
+  let gender = promptFor("Enter the infomration for the following prompts, if unknown or not needed enter 'unknown' and press enter to proceed. What is the person's 'gender'? enter 'male' or female'", chars);
+  let height = promptFor("What is the person's 'height'? enter inches",chars);
+  let weight = promptFor("What is the person's 'weight'? enter pounds", chars);
+  let dob = promptFor("What is the person's 'dob'? enter fomral mm/dd/yyyy all in numbers",chars);
+  let eyeColor = promptFor("What is the person's 'eye color'? enter single word",chars);
+  let occupation = promptFor("What is the person's 'occupation'?",chars);
+  let foundPerson = people.filter(function(person){
+   if(person.gender === gender || person.height === height || person.weight === weight || person.dob === dob || person.eyeColor === eyeColor || person.occupation === occupation){
+     return true;
+   }
+   else{
+     return false;
+   }
+  })
+  return foundPerson;
+}
+
 function searchByGender(people){
   let gender = promptFor("Please enter a 'male' or 'female'", chars);
 
