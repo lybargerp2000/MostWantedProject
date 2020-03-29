@@ -77,6 +77,8 @@ function mainMenu(person, people){
   person.map(function(person){
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
+ 
+
   
 
   
@@ -109,8 +111,8 @@ function mainMenu(person, people){
     default:
     return mainMenu(person, people); // ask again
   }
- })
-}
+ 
+});
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
@@ -265,6 +267,12 @@ function displayPerson(person){
   personInfo += "Current Spouse: " + person.currentSpouse + "\n"
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
+}
+
+function displayImmediateFamily(familyMember){
+  // this function is going to be to get the immediate family members from the person we search for and display them in the console window
+  // the user stories specify Names, relation t the found person 
+  let familyInfo = "Name: " + familyMember.firstName + " " + familyMember.lastName + "\n";
 }
 
 // function that prompts and validates user input
