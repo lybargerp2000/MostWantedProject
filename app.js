@@ -35,7 +35,11 @@ case 'one':
  case 'multiple':
    searchResults = searchByTraits(people);
    break;
+   default:
+    app(people); // restart app
+      break;
   }
+  mainMenu(searchResults, people);
 
 }
 function ChooseWhichTraitsearch(people){
@@ -60,14 +64,17 @@ function ChooseWhichTraitsearch(people){
               case 'occupation':
                 searchResults = searchByOccupation(people);
                 break;
+                default:
+                app(people); // restart app
+                break;
   }
-
+  displayPeople(people);
 
 }
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
-  let foundPerson = person.map(function(person){
+  person.map(function(person){
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
   
@@ -83,13 +90,15 @@ function mainMenu(person, people){
   switch(displayOption){
     case "info":
     // TODO: get person's info
-    console.log(displayPerson(person));
+    displayPerson(person);
+    console.log(displayPerson([0]));
 
     break;
     case "family":
     // TODO: get person's family
     break;
     case "descendants":
+      searchForDescendants(person.id);
     // TODO: get person's descendants
     break;
     case "restart":
@@ -116,16 +125,17 @@ function searchByName(people){
     }
   })
   // TODO: find the person using the name they entered
-  return foundPerson[0];
+  return foundPerson;
 }
 function searchByTraits(people){
-  let gender = promptFor("Enter the infomration for the following prompts, if unknown or not needed enter 'unknown' and press enter to proceed. What is the person's 'gender'? enter 'male' or female'", chars);
+  let gender = promptFor("Enter the infomration for the following prompts, if unknown or not needed press any alphbetical key and press enter to proceed. What is the person's 'gender'? enter 'male' or female'", chars);
   let height = promptFor("What is the person's 'height'? enter inches",chars);
   let weight = promptFor("What is the person's 'weight'? enter pounds", chars);
   let dob = promptFor("What is the person's 'dob'? enter fomral mm/dd/yyyy all in numbers",chars);
   let eyeColor = promptFor("What is the person's 'eye color'? enter single word",chars);
   let occupation = promptFor("What is the person's 'occupation'?",chars);
-  let foundPerson = people.filter(function(person){
+  
+  let foundPeople = people.filter(function(person){
    if(person.gender === gender || person.height === height || person.weight === weight || person.dob === dob || person.eyeColor === eyeColor || person.occupation === occupation){
      return true;
    }
@@ -133,7 +143,8 @@ function searchByTraits(people){
      return false;
    }
   })
-  return foundPerson;
+  displayPeople(foundPeople)
+  return foundPeople
 }
 
 function searchByGender(people){
@@ -141,13 +152,16 @@ function searchByGender(people){
 
   let foundPerson = people.filter(function(person){
    if(person.gender === gender){
+    
      return true;
    }
    else{
      return false;
    }
   })
-  return foundPerson;
+  displayPeople(foundPerson)
+  //return foundPeople
+  
 }
 function searchByDob(people){
   let dob = promptFor("Please enter 'dob' in this format with numbers: mm/dd/yyyy", chars);
@@ -160,7 +174,8 @@ function searchByDob(people){
      return false;
    }
   })
-  return foundPerson;
+  displayPeople(foundPerson)
+  return foundPeople
 }
 function searchByHeight(people){
   let height = promptFor("Please enter 'height' in this format with numbers in inches: nn", chars);
@@ -173,7 +188,8 @@ function searchByHeight(people){
      return false;
    }
   })
-  return foundPerson;
+  displayPeople(foundPerson)
+  return foundPeople
 }
 function searchByWeight(people){
   let weight = promptFor("Please enter 'weight' in this format: nnn with numbers in pounds", chars);
@@ -199,7 +215,9 @@ function searchByEyeColor(people){
      return false;
    }
   })
-  return foundPerson;
+  displayPeople(foundPerson)
+  return foundPeople
+  
 }
 function searchByOccupation(people){
   let occupation = promptFor("Please enter 'occupation'", chars);
@@ -214,6 +232,15 @@ function searchByOccupation(people){
   })
   return foundPerson;
 }
+function searchForDescendants(counter){
+  
+  if(counter>0){
+    return searchForDescendants(counter-1);
+  }
+  console.log(parenst);
+}
+//searchForDescendants(4);
+
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
