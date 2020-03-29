@@ -74,7 +74,7 @@ function ChooseWhichTraitsearch(people){
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
-  person.map(function(person){
+  //person.map(function(person){
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
  
@@ -112,7 +112,7 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
  
-});
+}
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
