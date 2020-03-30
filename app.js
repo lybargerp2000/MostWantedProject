@@ -74,7 +74,7 @@ function ChooseWhichTraitsearch(people){
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
-  //person.map(function(person){
+  person.map(function(person){
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
  
@@ -100,7 +100,7 @@ function mainMenu(person, people){
     // TODO: get person's family
     break;
     case "descendants":
-      searchForDescendants(person.id);
+      searchForDescendants(person);
     // TODO: get person's descendants
     break;
     case "restart":
@@ -111,6 +111,7 @@ function mainMenu(person, people){
     default:
     return mainMenu(person, people); // ask again
   }
+})
  
 }
 
@@ -234,12 +235,19 @@ function searchByOccupation(people){
   })
   return foundPerson;
 }
-function searchForDescendants(counter){
+function searchForDescendants(people){
+
+  let descendants = people.filter(function(person){
+    if(person.id === parents.id){
+      return person;
+    }
+    else{
+      return false;
+    }
+  })
+  Console.log(descendants);
+  return descendants;
   
-  if(counter>0){
-    return searchForDescendants(counter-1);
-  }
-  console.log(parenst);
 }
 //searchForDescendants(4);
 
