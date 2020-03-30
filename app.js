@@ -111,8 +111,8 @@ function mainMenu(person, people){
     default:
     return mainMenu(person, people); // ask again
   }
- 
 })
+ 
 }
 
 function searchByName(people){
