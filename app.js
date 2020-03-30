@@ -100,7 +100,7 @@ function mainMenu(person, people){
     // TODO: get person's family
     break;
     case "descendants":
-      searchForDescendants(person.id);
+      searchForDescendants(people);
     // TODO: get person's descendants
     break;
     case "restart":
@@ -112,7 +112,8 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
  
-});
+})
+}
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
@@ -234,12 +235,14 @@ function searchByOccupation(people){
   })
   return foundPerson;
 }
-function searchForDescendants(counter){
-  
+function searchForDescendants(counter, people){
+  let descendants = parent.id;
+  let descendants = people.filter(function(person){
   if(counter>0){
     return searchForDescendants(counter-1);
   }
-  console.log(parenst);
+  console.log(descendants);
+})
 }
 //searchForDescendants(4);
 
