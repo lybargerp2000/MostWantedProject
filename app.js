@@ -100,7 +100,7 @@ function mainMenu(person, people){
     // TODO: get person's family
     break;
     case "descendants":
-      searchForDescendants(people);
+      searchForDescendants(person, people);
     // TODO: get person's descendants
     break;
     case "restart":
@@ -235,15 +235,23 @@ function searchByOccupation(people){
   })
   return foundPerson;
 }
-function searchForDescendants(counter, people){
-  let descendants = parent.id;
-  let descendants = people.filter(function(person){
+function searchForDescendants(person, counter, people){
+  //let descendants = parent.id;
+  //people.map(function(people){
+  let result = person.id === people.parents;
   if(counter>0){
     return searchForDescendants(counter-1);
   }
-  console.log(descendants);
-})
+ 
+console.log(result);
+return result;
 }
+
+
+
+
+
+
 //searchForDescendants(4);
 
 // alerts a list of people
