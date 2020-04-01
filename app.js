@@ -74,7 +74,7 @@ function ChooseWhichTraitsearch(people){
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
-  person.map(function(person){
+ person.map(function(person){
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
  
@@ -98,9 +98,12 @@ function mainMenu(person, people){
     break;
     case "family":
     // TODO: get person's family
+     searchForFamily(person, people)
+     
     break;
     case "descendants":
       searchForDescendants(person, people);
+ 
     // TODO: get person's descendants
     break;
     case "restart":
@@ -233,24 +236,37 @@ function searchByOccupation(people){
      return false;
    }
   })
+  displayPeople(foundPerson);
   return foundPerson;
 }
-function searchForDescendants(person, counter, people){
-  //let descendants = parent.id;
-  //people.map(function(people){
-  let result = person.id === people.parents;
-  if(counter>0){
-    return searchForDescendants(counter-1);
-  }
- 
-console.log(result);
-return result;
+function searchForFamily(person, people){
+  
+  let familyMember = people.filter(function(familyMember){
+    if(person.id === familyMember.currentSpouse){
+      return true;
+    }
+    else{
+      return false;
+    }
+})
+console.log(familyMember);
+displayImmediateFamily(familyMember);
+return familyMember;
 }
-
-
-
-
-
+function searchForDescendants(person, people){
+  
+    let descendants = people.filter(function(descendants){
+      if(person.id === descendants.parents[0]){
+        return true;
+      }
+      else{
+        return false;
+      }
+  })
+  console.log(descendants);
+  displayPeople(descendants);
+  return descendants;
+}
 
 //searchForDescendants(4);
 
@@ -283,7 +299,10 @@ function displayPerson(person){
 function displayImmediateFamily(familyMember){
   // this function is going to be to get the immediate family members from the person we search for and display them in the console window
   // the user stories specify Names, relation t the found person 
-  let familyInfo = "Name: " + familyMember.firstName + " " + familyMember.lastName + "\n";
+  let familyInfo = "First Name: " + familyMember.firstName + " " + familyMember.lastName + "\n";
+  //familyInfo += "Current Spouse: " + familyMember.currentSpouse + "\n"
+
+  alert(familyInfo);
 }
 
 // function that prompts and validates user input
