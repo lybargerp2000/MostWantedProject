@@ -263,10 +263,12 @@ function searchForDescendants(counter, people, person){
         return false;
       } 
   })
-  counter = people;
+  counter;
   if(counter>0){
-    return searchForDescendants(counter-1);
+    descendants = person;
+    return searchForDescendants(counter-1, person, people);
   }
+  //searchForDescendants(people, descendants)
   console.log(descendants);
   displayPeople(descendants);
  
