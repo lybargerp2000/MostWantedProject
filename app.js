@@ -242,7 +242,7 @@ function searchByOccupation(people){
 function searchForFamily(person, people){
   
   let familyMember = people.filter(function(familyMember){
-    if(person.id === familyMember.currentSpouse){
+    if(person.id === familyMember.currentSpouse && familyMember.parents){
       return true;
     }
     else{
@@ -263,11 +263,13 @@ function searchForDescendants(counter, people, person){
         return false;
       } 
   })
-  counter;
-  if(counter>0){
-    descendants = person;
+  //counter;
+  if(counter > 0){
+ 
     return searchForDescendants(counter-1, person, people);
   }
+  person = descendants;
+  searchForDescendants(1, person, people);
   //searchForDescendants(people, descendants)
   console.log(descendants);
   displayPeople(descendants);
