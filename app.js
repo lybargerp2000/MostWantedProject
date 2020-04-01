@@ -102,7 +102,7 @@ function mainMenu(person, people){
      
     break;
     case "descendants":
-      searchForDescendants(person, people);
+      searchForDescendants(people, people, person);
  
     // TODO: get person's descendants
     break;
@@ -253,7 +253,7 @@ console.log(familyMember);
 displayImmediateFamily(familyMember);
 return familyMember;
 }
-function searchForDescendants(person, people){
+function searchForDescendants(counter, people, person){
   
     let descendants = people.filter(function(descendants){
       if(person.id === descendants.parents[0]){
@@ -261,11 +261,15 @@ function searchForDescendants(person, people){
       }
       else{
         return false;
-      }
+      } 
   })
+  counter = people;
+  if(counter>0){
+    return searchForDescendants(counter-1);
+  }
   console.log(descendants);
   displayPeople(descendants);
-  return descendants;
+ 
 }
 
 //searchForDescendants(4);
